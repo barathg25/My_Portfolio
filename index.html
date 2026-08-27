@@ -1034,9 +1034,7 @@
             gap: 10px;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .form-group { margin-bottom: 20px; }
 
         .form-group label {
             display: block;
@@ -1082,6 +1080,7 @@
             font-size: 0.95rem;
             font-weight: 600;
             margin-bottom: 20px;
+            line-height: 1.6;
         }
 
         .form-alert.success {
@@ -1089,6 +1088,13 @@
             background: rgba(0, 255, 135, 0.15);
             border: 1px solid rgba(0, 255, 135, 0.4);
             color: #00FF87;
+        }
+
+        .form-alert.info {
+            display: block;
+            background: rgba(0, 242, 254, 0.15);
+            border: 1px solid rgba(0, 242, 254, 0.4);
+            color: #00F2FE;
         }
 
         .form-alert.error {
@@ -1679,7 +1685,13 @@
                     
                     <div id="formAlert" class="form-alert"></div>
 
-                    <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                    <!-- FormSubmit Endpoint configured to connectwithbarath@gmail.com -->
+                    <form id="contactForm" action="https://formsubmit.co/connectwithbarath@gmail.com" method="POST" onsubmit="handleFormSubmit(event)">
+                        <!-- FormSubmit Configuration Hidden Fields -->
+                        <input type="hidden" name="_captcha" value="false">
+                        <input type="hidden" name="_template" value="table">
+                        <input type="hidden" name="_subject" value="New Portfolio Message for Barath G">
+
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="senderName">Your Name *</label>
@@ -1693,7 +1705,7 @@
 
                         <div class="form-group">
                             <label for="msgSubject">Subject</label>
-                            <input type="text" id="msgSubject" name="_subject" class="form-control" placeholder="DevOps Project / Job Opportunity">
+                            <input type="text" id="msgSubject" name="subject" class="form-control" placeholder="DevOps Project / Job Opportunity">
                         </div>
 
                         <div class="form-group">
@@ -1731,10 +1743,8 @@
             navLinks.classList.remove('active');
         }
 
-        // Handle Contact Form Submission to Email
+        // Handle Contact Form Submission
         async function handleFormSubmit(event) {
-            event.preventDefault();
-            
             const submitBtn = document.getElementById('submitBtn');
             const formAlert = document.getElementById('formAlert');
             const form = document.getElementById('contactForm');
@@ -1744,14 +1754,14 @@
             const subject = document.getElementById('msgSubject').value || 'New Portfolio Message from ' + name;
             const message = document.getElementById('msgContent').value;
             
-            // Show loading state
+            // Show sending state
             submitBtn.disabled = true;
-            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending to connectwithbarath@gmail.com...';
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending message...';
             formAlert.className = 'form-alert';
             formAlert.style.display = 'none';
 
             try {
-                // Send AJAX POST request via FormSubmit endpoint to Barath's email
+                // Try AJAX submit first
                 const response = await fetch('https://formsubmit.co/ajax/connectwithbarath@gmail.com', {
                     method: 'POST',
                     headers: {
@@ -1762,33 +1772,34 @@
                         name: name,
                         email: email,
                         _subject: subject,
-                        message: message
+                        message: message,
+                        _captcha: "false"
                     })
                 });
 
                 const data = await response.json();
 
-                if (response.ok || data.success === "true") {
+                if (response.ok && (data.success === "true" || data.success === true)) {
                     formAlert.className = 'form-alert success';
                     formAlert.innerHTML = '<i class="fa-solid fa-circle-check"></i> <strong>Message Delivered!</strong> Thank you ' + name + ', your message has been sent directly to Barath\'s inbox (connectwithbarath@gmail.com).';
                     form.reset();
                     showToast("Message sent to connectwithbarath@gmail.com!");
+                } else if (data.message && data.message.includes("Activation")) {
+                    formAlert.className = 'form-alert info';
+                    formAlert.innerHTML = '<i class="fa-solid fa-circle-info"></i> <strong>Form Activation Required:</strong> FormSubmit sent an activation email to <strong>connectwithbarath@gmail.com</strong>. Please check your inbox and click <em>"Activate Form"</em> to enable direct delivery!';
                 } else {
-                    throw new Error('Server returned an error.');
+                    // Fallback to standard form POST submit
+                    event.target.submit();
                 }
             } catch (err) {
-                console.error("Form submit error:", err);
-                formAlert.className = 'form-alert error';
-                formAlert.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Could not send via auto-relay. Opening direct mail client...';
-                
-                // Fallback to mailto link if endpoint fails
-                setTimeout(() => {
-                    const mailtoUrl = `mailto:connectwithbarath@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
-                    window.location.href = mailtoUrl;
-                }, 1000);
+                console.error("AJAX submit failed, submitting standard POST form:", err);
+                // Submit form natively
+                form.submit();
             } finally {
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message to Barath';
+                setTimeout(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message to Barath';
+                }, 3000);
             }
         }
 
