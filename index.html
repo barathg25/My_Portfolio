@@ -143,7 +143,7 @@
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border-color);
-            padding: 16px 0;
+            padding: 14px 0;
             transition: all 0.3s ease;
         }
 
@@ -153,35 +153,98 @@
             align-items: center;
         }
 
-        .logo {
-            font-family: var(--font-heading);
-            font-size: 1.6rem;
-            font-weight: 800;
-            color: #fff;
+        /* Special High-Tech Brand Logo */
+        .logo-special {
             text-decoration: none;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 14px;
+            group: logo;
+            cursor: pointer;
         }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 10px;
-            background: var(--grad-primary);
+        .logo-badge {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #00F2FE 0%, #7928CA 50%, #FF0080 100%);
+            background-size: 200% 200%;
+            animation: gradientRotate 5s ease infinite;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #000;
-            font-size: 1.2rem;
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
-            animation: logoPulse 3s ease-in-out infinite alternate;
+            color: #fff;
+            font-size: 1.3rem;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        @keyframes logoPulse {
-            0% { transform: rotate(0deg); box-shadow: 0 0 15px rgba(0, 242, 254, 0.4); }
-            50% { transform: rotate(180deg); box-shadow: 0 0 25px rgba(178, 36, 239, 0.6); }
-            100% { transform: rotate(360deg); box-shadow: 0 0 15px rgba(0, 242, 254, 0.4); }
+        .logo-badge i {
+            transition: transform 0.5s ease;
+        }
+
+        .logo-special:hover .logo-badge {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 0 30px rgba(0, 242, 254, 0.8);
+        }
+
+        .logo-special:hover .logo-badge i {
+            transform: rotate(360deg);
+        }
+
+        .logo-text-group {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo-title-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .logo-name {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -0.5px;
+            line-height: 1;
+            transition: all 0.3s ease;
+        }
+
+        .logo-tag-dev {
+            background: var(--grad-primary);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .logo-status-tag {
+            font-size: 0.65rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            background: rgba(0, 255, 135, 0.12);
+            color: #00FF87;
+            border: 1px solid rgba(0, 255, 135, 0.3);
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-top: 3px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            width: fit-content;
+            transition: all 0.3s ease;
+        }
+
+        .logo-special:hover .logo-status-tag {
+            background: rgba(0, 242, 254, 0.2);
+            color: #00F2FE;
+            border-color: #00F2FE;
+            transform: translateX(2px);
         }
 
         .nav-links {
@@ -662,9 +725,7 @@
             transition: color 0.3s ease;
         }
 
-        .exp-list li:hover {
-            color: #fff;
-        }
+        .exp-list li:hover { color: #fff; }
 
         .exp-list li::before {
             content: "\f00c";
@@ -894,9 +955,7 @@
             transition: border-color 0.3s ease;
         }
 
-        .timeline-item:hover {
-            border-left-color: #00F2FE;
-        }
+        .timeline-item:hover { border-left-color: #00F2FE; }
 
         .timeline-item::before {
             content: '';
@@ -973,10 +1032,7 @@
             z-index: 2000;
         }
 
-        .toast.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .toast.show { opacity: 1; transform: translateY(0); }
 
         /* Footer */
         footer {
@@ -1041,10 +1097,21 @@
     <!-- Navigation -->
     <nav>
         <div class="container nav-content">
-            <a href="#home" class="logo">
-                <div class="logo-icon"><i class="fa-solid fa-dharmachakra"></i></div>
-                Barath<span class="text-grad-primary">.dev</span>
+            <!-- Special High-Tech Brand Logo -->
+            <a href="#home" class="logo-special">
+                <div class="logo-badge">
+                    <i class="fa-solid fa-dharmachakra"></i>
+                </div>
+                <div class="logo-text-group">
+                    <div class="logo-title-row">
+                        <span class="logo-name">BARATH<span class="logo-tag-dev">.dev</span></span>
+                    </div>
+                    <div class="logo-status-tag">
+                        <i class="fa-solid fa-bolt"></i> SR. DEVOPS ENGINEER
+                    </div>
+                </div>
             </a>
+
             <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle navigation">
                 <i class="fa-solid fa-bars"></i>
             </button>
@@ -1516,7 +1583,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Barath G. Senior DevOps Engineer | Built with Passion &amp; Dynamic Animations.</p>
+            <p>&copy; 2026 Barath G. Senior DevOps Engineer | Built with Passion &amp; High-Tech Design.</p>
         </div>
     </footer>
 
