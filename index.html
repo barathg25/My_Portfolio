@@ -28,13 +28,11 @@
             --grad-accent: linear-gradient(135deg, #00FF87 0%, #60EFFF 100%);
             --grad-sunset: linear-gradient(135deg, #FF0844 0%, #FFB199 100%);
             --grad-gold: linear-gradient(135deg, #F9D423 0%, #FF4E50 100%);
-            --grad-purple-pink: linear-gradient(135deg, #EA5455 0%, #FEB692 100%);
             
             /* Solid Colors */
             --cyan-glow: #00F2FE;
             --purple-glow: #B224EF;
             --emerald-glow: #00FF87;
-            --amber-glow: #FFB199;
 
             --text-main: #F8FAFC;
             --text-muted: #94A3B8;
@@ -80,40 +78,10 @@
             animation: orbFloat 18s ease-in-out infinite alternate;
         }
 
-        .orb-1 {
-            width: 500px;
-            height: 500px;
-            background: #00F2FE;
-            top: -100px;
-            left: -100px;
-        }
-
-        .orb-2 {
-            width: 600px;
-            height: 600px;
-            background: #7928CA;
-            top: 40%;
-            right: -150px;
-            animation-delay: -5s;
-        }
-
-        .orb-3 {
-            width: 450px;
-            height: 450px;
-            background: #FF0080;
-            bottom: -100px;
-            left: 30%;
-            animation-delay: -10s;
-        }
-
-        .orb-4 {
-            width: 350px;
-            height: 350px;
-            background: #00FF87;
-            top: 20%;
-            left: 40%;
-            animation-delay: -14s;
-        }
+        .orb-1 { width: 500px; height: 500px; background: #00F2FE; top: -100px; left: -100px; }
+        .orb-2 { width: 600px; height: 600px; background: #7928CA; top: 40%; right: -150px; animation-delay: -5s; }
+        .orb-3 { width: 450px; height: 450px; background: #FF0080; bottom: -100px; left: 30%; animation-delay: -10s; }
+        .orb-4 { width: 350px; height: 350px; background: #00FF87; top: 20%; left: 40%; animation-delay: -14s; }
 
         @keyframes orbFloat {
             0% { transform: translate(0, 0) scale(1); }
@@ -129,34 +97,41 @@
         }
 
         /* Gradient Text Utilities */
-        .text-grad-primary {
-            background: var(--grad-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .text-grad-primary { background: var(--grad-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-grad-secondary { background: var(--grad-secondary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-grad-accent { background: var(--grad-accent); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-grad-sunset { background: var(--grad-sunset); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-grad-gold { background: var(--grad-gold); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* Scroll Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            will-change: opacity, transform;
         }
 
-        .text-grad-secondary {
-            background: var(--grad-secondary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .reveal-left {
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .text-grad-accent {
-            background: var(--grad-accent);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .reveal-right {
+            opacity: 0;
+            transform: translateX(40px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .text-grad-sunset {
-            background: var(--grad-sunset);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.92);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .text-grad-gold {
-            background: var(--grad-gold);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .reveal.active, .reveal-left.active, .reveal-right.active, .reveal-scale.active {
+            opacity: 1;
+            transform: translateY(0) translateX(0) scale(1);
         }
 
         /* Navbar */
@@ -200,6 +175,13 @@
             color: #000;
             font-size: 1.2rem;
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.4);
+            animation: logoPulse 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoPulse {
+            0% { transform: rotate(0deg); box-shadow: 0 0 15px rgba(0, 242, 254, 0.4); }
+            50% { transform: rotate(180deg); box-shadow: 0 0 25px rgba(178, 36, 239, 0.6); }
+            100% { transform: rotate(360deg); box-shadow: 0 0 15px rgba(0, 242, 254, 0.4); }
         }
 
         .nav-links {
@@ -267,11 +249,10 @@
             justify-content: space-between;
             gap: 50px;
             min-height: 85vh;
+            position: relative;
         }
 
-        .hero-text {
-            flex: 1.2;
-        }
+        .hero-text { flex: 1.2; }
 
         .badge-devops {
             display: inline-flex;
@@ -285,6 +266,12 @@
             font-weight: 700;
             margin-bottom: 24px;
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+            animation: floatBadge 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes floatBadge {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(-6px); }
         }
 
         .badge-pulse {
@@ -345,12 +332,16 @@
             border-radius: 12px;
             border: 1px solid var(--border-color);
             backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
 
-        .meta-pill i {
-            color: #00F2FE;
-            font-size: 1.05rem;
+        .meta-pill:hover {
+            transform: translateY(-4px);
+            border-color: #00F2FE;
+            box-shadow: 0 5px 15px rgba(0, 242, 254, 0.2);
         }
+
+        .meta-pill i { color: #00F2FE; font-size: 1.05rem; }
 
         .hero-btns {
             display: flex;
@@ -370,6 +361,24 @@
             gap: 10px;
             box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
             transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-gradient::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(60deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transform: rotate(30deg) translateY(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .btn-gradient:hover::after {
+            transform: rotate(30deg) translateY(100%);
         }
 
         .btn-gradient:hover {
@@ -452,11 +461,30 @@
             border-radius: 50%;
             border: 4px solid rgba(255, 255, 255, 0.2);
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+            animation: floatAvatar 5s ease-in-out infinite alternate;
             transition: transform 0.4s ease;
         }
 
-        .hero-avatar img:hover {
-            transform: scale(1.05) rotate(2deg);
+        @keyframes floatAvatar {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-12px) rotate(2deg); }
+        }
+
+        .scroll-down-hint {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            animation: bounceDown 2s infinite;
+            cursor: pointer;
+        }
+
+        @keyframes bounceDown {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
         }
 
         /* Section Styling */
@@ -486,7 +514,7 @@
             letter-spacing: -0.5px;
         }
 
-        /* Glass Cards with Gradient Borders */
+        /* Glass Cards with Gradient Shimmer Effects */
         .glass-card {
             background: var(--bg-card);
             backdrop-filter: blur(20px);
@@ -499,10 +527,25 @@
             overflow: hidden;
         }
 
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+            transition: left 0.7s ease;
+        }
+
+        .glass-card:hover::before {
+            left: 100%;
+        }
+
         .glass-card:hover {
-            transform: translateY(-6px);
+            transform: translateY(-8px) scale(1.01);
             border-color: rgba(0, 242, 254, 0.4);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), 0 0 25px rgba(0, 242, 254, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 242, 254, 0.2);
         }
 
         /* Highlight Cards Grid */
@@ -525,8 +568,8 @@
         }
 
         .highlight-item:hover {
-            background: rgba(255, 255, 255, 0.07);
-            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-4px) scale(1.02);
         }
 
         .highlight-icon {
@@ -540,6 +583,11 @@
             color: #070913;
             font-weight: bold;
             flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-item:hover .highlight-icon {
+            transform: rotate(10deg) scale(1.1);
         }
 
         .bg-grad-1 { background: var(--grad-primary); box-shadow: 0 0 15px rgba(0, 242, 254, 0.4); }
@@ -547,17 +595,8 @@
         .bg-grad-3 { background: var(--grad-accent); box-shadow: 0 0 15px rgba(0, 255, 135, 0.4); }
         .bg-grad-4 { background: var(--grad-sunset); color: #fff !important; box-shadow: 0 0 15px rgba(255, 8, 68, 0.4); }
 
-        .highlight-info h4 {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: #fff;
-        }
-
-        .highlight-info p {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-top: 2px;
-        }
+        .highlight-info h4 { font-size: 1.25rem; font-weight: 800; color: #fff; }
+        .highlight-info p { font-size: 0.85rem; color: var(--text-muted); margin-top: 2px; }
 
         /* Work Experience */
         .exp-header {
@@ -571,12 +610,7 @@
             border-bottom: 1px solid var(--border-color);
         }
 
-        .exp-title h3 {
-            font-family: var(--font-heading);
-            font-size: 1.7rem;
-            font-weight: 800;
-            color: #fff;
-        }
+        .exp-title h3 { font-family: var(--font-heading); font-size: 1.7rem; font-weight: 800; color: #fff; }
 
         .exp-company {
             font-weight: 700;
@@ -595,6 +629,12 @@
             border-radius: 20px;
             font-weight: 800;
             box-shadow: 0 0 12px rgba(0, 255, 135, 0.4);
+            animation: pulseBadge 2s infinite alternate;
+        }
+
+        @keyframes pulseBadge {
+            0% { box-shadow: 0 0 8px rgba(0, 255, 135, 0.3); }
+            100% { box-shadow: 0 0 18px rgba(0, 255, 135, 0.7); }
         }
 
         .exp-date {
@@ -610,9 +650,7 @@
             gap: 8px;
         }
 
-        .exp-list {
-            list-style: none;
-        }
+        .exp-list { list-style: none; }
 
         .exp-list li {
             position: relative;
@@ -621,6 +659,11 @@
             color: var(--text-muted);
             font-size: 1.02rem;
             line-height: 1.7;
+            transition: color 0.3s ease;
+        }
+
+        .exp-list li:hover {
+            color: #fff;
         }
 
         .exp-list li::before {
@@ -632,6 +675,11 @@
             top: 3px;
             color: #00F2FE;
             font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+
+        .exp-list li:hover::before {
+            transform: scale(1.3) rotate(360deg);
         }
 
         /* Projects Section */
@@ -659,6 +707,11 @@
             margin-bottom: 24px;
             color: #070913;
             font-weight: bold;
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover .project-icon-box {
+            transform: scale(1.15) rotate(5deg);
         }
 
         .project-title {
@@ -692,12 +745,14 @@
             padding: 5px 12px;
             border-radius: 8px;
             font-weight: 600;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
         }
 
         .tech-pill:hover {
             border-color: #00F2FE;
             color: #00F2FE;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 242, 254, 0.3);
         }
 
         /* Gallery Grid */
@@ -722,13 +777,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.5s ease;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .gallery-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to top, rgba(7, 9, 19, 0.9) 0%, transparent 60%);
+            background: linear-gradient(to top, rgba(7, 9, 19, 0.95) 0%, transparent 60%);
             display: flex;
             align-items: flex-end;
             padding: 20px;
@@ -744,13 +799,13 @@
         }
 
         .gallery-item:hover {
-            transform: translateY(-6px) scale(1.02);
-            border-color: rgba(0, 242, 254, 0.5);
-            box-shadow: 0 15px 35px rgba(0, 242, 254, 0.2);
+            transform: translateY(-8px) scale(1.03);
+            border-color: rgba(0, 242, 254, 0.6);
+            box-shadow: 0 20px 40px rgba(0, 242, 254, 0.3);
         }
 
         .gallery-item:hover img {
-            transform: scale(1.1);
+            transform: scale(1.12);
         }
 
         /* Skills Section */
@@ -777,6 +832,11 @@
             font-size: 1.25rem;
             color: #070913;
             font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover .skill-cat-badge {
+            transform: rotate(360deg);
         }
 
         .skill-cat-title {
@@ -807,11 +867,11 @@
         }
 
         .skill-pill:hover {
-            background: rgba(0, 242, 254, 0.15);
+            background: rgba(0, 242, 254, 0.18);
             border-color: #00F2FE;
             color: #fff;
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 242, 254, 0.2);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(0, 242, 254, 0.3);
         }
 
         /* Education & Certifications */
@@ -831,6 +891,11 @@
             position: relative;
             padding-left: 28px;
             border-left: 3px solid rgba(0, 242, 254, 0.3);
+            transition: border-color 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            border-left-color: #00F2FE;
         }
 
         .timeline-item::before {
@@ -843,33 +908,21 @@
             border-radius: 50%;
             background: #00F2FE;
             box-shadow: 0 0 12px #00F2FE;
+            transition: transform 0.3s ease, background 0.3s ease;
         }
 
-        .timeline-item h4 {
-            font-size: 1.15rem;
-            color: #fff;
-            font-weight: 700;
+        .timeline-item:hover::before {
+            transform: scale(1.4);
+            background: #00FF87;
+            box-shadow: 0 0 16px #00FF87;
         }
 
-        .timeline-item p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-top: 4px;
-        }
-
-        .timeline-date {
-            font-size: 0.85rem;
-            color: #00FF87;
-            font-weight: 700;
-            margin-top: 6px;
-        }
+        .timeline-item h4 { font-size: 1.15rem; color: #fff; font-weight: 700; }
+        .timeline-item p { font-size: 0.95rem; color: var(--text-muted); margin-top: 4px; }
+        .timeline-date { font-size: 0.85rem; color: #00FF87; font-weight: 700; margin-top: 6px; }
 
         /* Contact Section */
-        .contact-box {
-            text-align: center;
-            max-width: 860px;
-            margin: 0 auto;
-        }
+        .contact-box { text-align: center; max-width: 860px; margin: 0 auto; }
 
         .contact-methods {
             display: flex;
@@ -894,20 +947,14 @@
 
         .contact-card:hover {
             border-color: #00F2FE;
-            background: rgba(0, 242, 254, 0.1);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.25);
+            background: rgba(0, 242, 254, 0.12);
+            transform: translateY(-5px) scale(1.03);
+            box-shadow: 0 12px 30px rgba(0, 242, 254, 0.3);
         }
 
-        .contact-card i {
-            font-size: 1.5rem;
-            color: #00F2FE;
-        }
-
-        .contact-card span {
-            font-weight: 700;
-            font-size: 1rem;
-        }
+        .contact-card i { font-size: 1.5rem; color: #00F2FE; transition: transform 0.3s ease; }
+        .contact-card:hover i { transform: scale(1.2) rotate(10deg); }
+        .contact-card span { font-weight: 700; font-size: 1rem; }
 
         /* Toast */
         .toast {
@@ -940,15 +987,8 @@
             font-size: 0.95rem;
         }
 
-        footer a {
-            color: #00F2FE;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
+        footer a { color: #00F2FE; text-decoration: none; font-weight: 600; }
+        footer a:hover { text-decoration: underline; }
 
         /* Media Queries */
         @media (max-width: 992px) {
@@ -958,17 +998,9 @@
                 padding-top: 50px;
             }
 
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .hero p {
-                margin: 0 auto 30px;
-            }
-
-            .hero-meta, .hero-btns {
-                justify-content: center;
-            }
+            .hero h1 { font-size: 3rem; }
+            .hero p { margin: 0 auto 30px; }
+            .hero-meta, .hero-btns { justify-content: center; }
         }
 
         @media (max-width: 768px) {
@@ -984,29 +1016,12 @@
                 border-bottom: 1px solid var(--border-color);
             }
 
-            .nav-links.active {
-                display: flex;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero h1 {
-                font-size: 2.4rem;
-            }
-
-            .hero h2 {
-                font-size: 1.35rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .projects-grid, .skills-grid, .edu-cert-grid {
-                grid-template-columns: 1fr;
-            }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero h2 { font-size: 1.35rem; }
+            .section-title { font-size: 2rem; }
+            .projects-grid, .skills-grid, .edu-cert-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1049,7 +1064,7 @@
 
         <!-- Hero Section -->
         <header id="home" class="hero">
-            <div class="hero-text">
+            <div class="hero-text reveal-left">
                 <div class="badge-devops">
                     <div class="badge-pulse"></div>
                     <span class="text-grad-primary">Senior DevOps Engineer</span>
@@ -1083,20 +1098,24 @@
                 </div>
             </div>
 
-            <div class="hero-avatar">
+            <div class="hero-avatar reveal-right">
                 <div class="avatar-glow-ring"></div>
                 <img src="Me.jpg" alt="Barath G - Senior DevOps Engineer">
+            </div>
+
+            <div class="scroll-down-hint" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+                <i class="fa-solid fa-chevron-down"></i>
             </div>
         </header>
 
         <!-- About / Summary Section -->
         <section id="about">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle text-grad-accent">Professional Profile</div>
                 <h2 class="section-title">About <span class="text-grad-primary">Me</span></h2>
             </div>
             
-            <div class="glass-card">
+            <div class="glass-card reveal-scale">
                 <p style="font-size: 1.1rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 24px;">
                     Results-driven <strong style="color: #fff;">Senior DevOps Engineer</strong> with core expertise in container orchestration, GitOps deployment pipelines, enterprise access management, and multi-cloud infrastructure administration. Fast-tracked from Junior to Senior DevOps Engineer at <strong style="color: #00F2FE;">Convergent Platforms Ltd</strong>, specializing in production Kubernetes management, ArgoCD GitOps workflows, and enterprise Jenkins Pipelines powered by reusable Groovy Shared Libraries.
                 </p>
@@ -1105,7 +1124,7 @@
                 </p>
 
                 <div class="highlights-grid">
-                    <div class="highlight-item">
+                    <div class="highlight-item reveal">
                         <div class="highlight-icon bg-grad-1">
                             <i class="fa-solid fa-cubes"></i>
                         </div>
@@ -1114,7 +1133,7 @@
                             <p>Standardized CI/CD via Groovy Shared Libraries</p>
                         </div>
                     </div>
-                    <div class="highlight-item">
+                    <div class="highlight-item reveal" style="transition-delay: 0.1s;">
                         <div class="highlight-icon bg-grad-2">
                             <i class="fa-solid fa-cloud"></i>
                         </div>
@@ -1123,7 +1142,7 @@
                             <p>AWS S3, Cloudflare R2, & Azure Blob Storage</p>
                         </div>
                     </div>
-                    <div class="highlight-item">
+                    <div class="highlight-item reveal" style="transition-delay: 0.2s;">
                         <div class="highlight-icon bg-grad-3">
                             <i class="fa-solid fa-shield-halved"></i>
                         </div>
@@ -1132,7 +1151,7 @@
                             <p>Entra ID (Azure AD) SAML/OIDC Integration</p>
                         </div>
                     </div>
-                    <div class="highlight-item">
+                    <div class="highlight-item reveal" style="transition-delay: 0.3s;">
                         <div class="highlight-icon bg-grad-4">
                             <i class="fa-solid fa-arrows-rotate"></i>
                         </div>
@@ -1147,12 +1166,12 @@
 
         <!-- Work Experience Section -->
         <section id="experience">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle text-grad-secondary">Career Milestones</div>
                 <h2 class="section-title">Work <span class="text-grad-secondary">Experience</span></h2>
             </div>
 
-            <div class="glass-card">
+            <div class="glass-card reveal">
                 <div class="exp-header">
                     <div class="exp-title">
                         <h3>Senior DevOps Engineer</h3>
@@ -1167,27 +1186,27 @@
                 </div>
 
                 <ul class="exp-list">
-                    <li>Architected modular Jenkins Shared Libraries written in Groovy, standardizing CI/CD build, security scanning, and container publishing steps across 20+ microservices.</li>
-                    <li>Implemented declarative GitOps application workflows utilizing ArgoCD and Kubernetes for automated continuous deployment and zero-downtime rolling releases.</li>
-                    <li>Administered an enterprise Self-Hosted GitLab server, configuring RBAC, user provisioning, backup routines, and runner auto-scaling.</li>
-                    <li>Configured centralized Identity & Access Management integrating Microsoft Entra ID (Azure AD) SSO for developer applications, including Jenkins and ArgoCD user authentication.</li>
-                    <li>Managed multi-cloud object storage architectures leveraging AWS S3, Cloudflare R2, and Azure Blob Storage for data backup, artifact storage, and static content distribution.</li>
-                    <li>Automated domain management, DNS routing, and SSL/TLS certificate renewals across Cloudflare and GoDaddy platforms to ensure continuous site security and uptime.</li>
-                    <li>Engineered observability dashboards and alerting mechanisms using Prometheus, Grafana, and AWS CloudWatch for proactive cluster health tracking.</li>
+                    <li class="reveal" style="transition-delay: 0.05s;">Architected modular Jenkins Shared Libraries written in Groovy, standardizing CI/CD build, security scanning, and container publishing steps across 20+ microservices.</li>
+                    <li class="reveal" style="transition-delay: 0.1s;">Implemented declarative GitOps application workflows utilizing ArgoCD and Kubernetes for automated continuous deployment and zero-downtime rolling releases.</li>
+                    <li class="reveal" style="transition-delay: 0.15s;">Administered an enterprise Self-Hosted GitLab server, configuring RBAC, user provisioning, backup routines, and runner auto-scaling.</li>
+                    <li class="reveal" style="transition-delay: 0.2s;">Configured centralized Identity & Access Management integrating Microsoft Entra ID (Azure AD) SSO for developer applications, including Jenkins and ArgoCD user authentication.</li>
+                    <li class="reveal" style="transition-delay: 0.25s;">Managed multi-cloud object storage architectures leveraging AWS S3, Cloudflare R2, and Azure Blob Storage for data backup, artifact storage, and static content distribution.</li>
+                    <li class="reveal" style="transition-delay: 0.3s;">Automated domain management, DNS routing, and SSL/TLS certificate renewals across Cloudflare and GoDaddy platforms to ensure continuous site security and uptime.</li>
+                    <li class="reveal" style="transition-delay: 0.35s;">Engineered observability dashboards and alerting mechanisms using Prometheus, Grafana, and AWS CloudWatch for proactive cluster health tracking.</li>
                 </ul>
             </div>
         </section>
 
         <!-- Key Projects Section -->
         <section id="projects">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle text-grad-gold">Enterprise Work</div>
                 <h2 class="section-title">Key <span class="text-grad-gold">Projects</span></h2>
             </div>
 
             <div class="projects-grid">
                 <!-- Project 1 -->
-                <div class="glass-card project-card">
+                <div class="glass-card project-card reveal" style="transition-delay: 0.05s;">
                     <div>
                         <div class="project-icon-box bg-grad-1">
                             <i class="fa-solid fa-key"></i>
@@ -1208,7 +1227,7 @@
                 </div>
 
                 <!-- Project 2 -->
-                <div class="glass-card project-card">
+                <div class="glass-card project-card reveal" style="transition-delay: 0.15s;">
                     <div>
                         <div class="project-icon-box bg-grad-2">
                             <i class="fa-solid fa-network-wired"></i>
@@ -1228,7 +1247,7 @@
                 </div>
 
                 <!-- Project 3 -->
-                <div class="glass-card project-card">
+                <div class="glass-card project-card reveal" style="transition-delay: 0.25s;">
                     <div>
                         <div class="project-icon-box bg-grad-3">
                             <i class="fa-solid fa-code-merge"></i>
@@ -1250,29 +1269,29 @@
 
             <!-- Tech Showcase Gallery -->
             <div style="margin-top: 60px;">
-                <h3 style="font-family: var(--font-heading); font-size: 1.5rem; text-align: center; color: #fff; margin-bottom: 20px;">
+                <h3 class="reveal" style="font-family: var(--font-heading); font-size: 1.5rem; text-align: center; color: #fff; margin-bottom: 20px;">
                     Core Platform Badges &amp; Artifacts
                 </h3>
                 <div class="gallery-grid">
-                    <div class="gallery-item">
+                    <div class="gallery-item reveal" style="transition-delay: 0.05s;">
                         <img src="aws.jpg" alt="AWS Cloud Infrastructure">
                         <div class="gallery-overlay">
                             <h4>AWS Cloud Architecture</h4>
                         </div>
                     </div>
-                    <div class="gallery-item">
+                    <div class="gallery-item reveal" style="transition-delay: 0.1s;">
                         <img src="Linux.jpg" alt="Linux System Administration">
                         <div class="gallery-overlay">
                             <h4>Linux Kernel &amp; Administration</h4>
                         </div>
                     </div>
-                    <div class="gallery-item">
+                    <div class="gallery-item reveal" style="transition-delay: 0.15s;">
                         <img src="Dev-Ops.jpg" alt="DevOps Pipeline Engineering">
                         <div class="gallery-overlay">
                             <h4>DevOps Engineering</h4>
                         </div>
                     </div>
-                    <div class="gallery-item">
+                    <div class="gallery-item reveal" style="transition-delay: 0.2s;">
                         <img src="MrB.jpg" alt="Barath G DevOps Badge">
                         <div class="gallery-overlay">
                             <h4>Barath G | Senior DevOps</h4>
@@ -1284,14 +1303,14 @@
 
         <!-- Technical Competencies Section -->
         <section id="skills">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle text-grad-accent">Skills & Toolkit</div>
                 <h2 class="section-title">Technical <span class="text-grad-accent">Competencies</span></h2>
             </div>
 
             <div class="skills-grid">
                 <!-- Skill 1 -->
-                <div class="glass-card">
+                <div class="glass-card reveal" style="transition-delay: 0.05s;">
                     <div class="skill-cat-header">
                         <div class="skill-cat-badge bg-grad-1">
                             <i class="fa-solid fa-cloud"></i>
@@ -1312,7 +1331,7 @@
                 </div>
 
                 <!-- Skill 2 -->
-                <div class="glass-card">
+                <div class="glass-card reveal" style="transition-delay: 0.1s;">
                     <div class="skill-cat-header">
                         <div class="skill-cat-badge bg-grad-2">
                             <i class="fa-solid fa-shield-virus"></i>
@@ -1330,7 +1349,7 @@
                 </div>
 
                 <!-- Skill 3 -->
-                <div class="glass-card">
+                <div class="glass-card reveal" style="transition-delay: 0.15s;">
                     <div class="skill-cat-header">
                         <div class="skill-cat-badge bg-grad-3">
                             <i class="fa-solid fa-diagram-project"></i>
@@ -1349,7 +1368,7 @@
                 </div>
 
                 <!-- Skill 4 -->
-                <div class="glass-card">
+                <div class="glass-card reveal" style="transition-delay: 0.2s;">
                     <div class="skill-cat-header">
                         <div class="skill-cat-badge bg-grad-4">
                             <i class="fa-solid fa-dharmachakra"></i>
@@ -1366,7 +1385,7 @@
                 </div>
 
                 <!-- Skill 5 -->
-                <div class="glass-card">
+                <div class="glass-card reveal" style="transition-delay: 0.25s;">
                     <div class="skill-cat-header">
                         <div class="skill-cat-badge bg-grad-1">
                             <i class="fa-solid fa-user-shield"></i>
@@ -1384,7 +1403,7 @@
                 </div>
 
                 <!-- Skill 6 -->
-                <div class="glass-card">
+                <div class="glass-card reveal" style="transition-delay: 0.3s;">
                     <div class="skill-cat-header">
                         <div class="skill-cat-badge bg-grad-2">
                             <i class="fa-solid fa-terminal"></i>
@@ -1403,14 +1422,14 @@
 
         <!-- Education & Certifications Section -->
         <section id="education">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <div class="section-subtitle text-grad-sunset">Qualifications</div>
                 <h2 class="section-title">Education & <span class="text-grad-sunset">Certifications</span></h2>
             </div>
 
             <div class="edu-cert-grid">
                 <!-- Education -->
-                <div class="glass-card">
+                <div class="glass-card reveal-left">
                     <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 24px; color: #fff; display: flex; align-items: center; gap: 12px;">
                         <i class="fa-solid fa-graduation-cap text-grad-primary"></i> Academic Background
                     </h3>
@@ -1431,7 +1450,7 @@
                 </div>
 
                 <!-- Certifications -->
-                <div class="glass-card">
+                <div class="glass-card reveal-right">
                     <h3 style="font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 24px; color: #fff; display: flex; align-items: center; gap: 12px;">
                         <i class="fa-solid fa-certificate text-grad-gold"></i> Professional Certifications
                     </h3>
@@ -1455,7 +1474,7 @@
 
         <!-- Contact Section -->
         <section id="contact">
-            <div class="glass-card contact-box">
+            <div class="glass-card contact-box reveal-scale">
                 <div class="section-subtitle text-grad-primary">Get In Touch</div>
                 <h2 class="section-title">Let's Build Something <span class="text-grad-primary">Awesome</span></h2>
                 <p style="color: var(--text-muted); margin-top: 14px; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
@@ -1497,7 +1516,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Barath G. Senior DevOps Engineer | Built with Passion &amp; High-Impact Design.</p>
+            <p>&copy; 2026 Barath G. Senior DevOps Engineer | Built with Passion &amp; Dynamic Animations.</p>
         </div>
     </footer>
 
@@ -1533,6 +1552,24 @@
                 toast.classList.remove("show");
             }, 3000);
         }
+
+        // IntersectionObserver Scroll Reveal Animations
+        document.addEventListener("DOMContentLoaded", () => {
+            const revealElements = document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-scale");
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("active");
+                    }
+                });
+            }, {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            revealElements.forEach((el) => observer.observe(el));
+        });
 
         // Active link highlighting on scroll
         const sections = document.querySelectorAll("section, header");
