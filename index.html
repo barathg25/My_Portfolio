@@ -3,404 +3,1288 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barath's Web Page</title>
+    <title>Barath G | Senior DevOps Engineer</title>
+    <meta name="description" content="Portfolio of Barath G, Senior DevOps Engineer specializing in Kubernetes, ArgoCD GitOps, Jenkins Shared Libraries, Entra ID SSO, and Multi-Cloud Storage.">
     <link rel="icon" href="BR.png" type="image/png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
+        :root {
+            --bg-dark: #0B0F17;
+            --bg-card: rgba(17, 24, 39, 0.75);
+            --bg-card-hover: rgba(30, 41, 59, 0.85);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --border-glow: rgba(56, 189, 248, 0.4);
+            
+            --primary: #38BDF8;
+            --primary-glow: rgba(56, 189, 248, 0.25);
+            --secondary: #818CF8;
+            --accent: #10B981;
+            
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --text-dim: #6B7280;
+            
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
+            font-family: var(--font-body);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 85% 65%, rgba(129, 140, 248, 0.08) 0%, transparent 40%);
+            background-attachment: fixed;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
         }
 
         /* Navbar */
         nav {
-            background-color: #3498db;
-            color: #fff;
-            padding: 15px 30px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
+            background: rgba(11, 15, 23, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 16px 0;
+            transition: all 0.3s ease;
         }
 
-        nav a {
-            color: white;
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
             text-decoration: none;
-            margin: 0 15px;
-            font-size: 18px;
-            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
             transition: color 0.3s ease;
         }
 
-        nav a:hover {
-            color: #f1c40f;
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .btn-contact {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff !important;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600 !important;
+            box-shadow: 0 4px 14px var(--primary-glow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+        }
+
+        .btn-contact:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.4);
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* Hero Section */
-        header {
-            position: relative;
-            width: 100%;
-            height: 100vh;
-            background: linear-gradient(to bottom right, #ffffff, #ffffff); /* White Gradient Background */
-            color: #000; /* Black text color for contrast */
-            text-align: center;
+        header.hero {
+            padding: 100px 0 60px;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
-            box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 2s ease-out;
+            justify-content: space-between;
+            gap: 40px;
+            min-height: 85vh;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        .hero-text {
+            flex: 1;
         }
 
-        header img {
-            border-radius: 50%;
-            height: 150px;
-            border: 5px solid #fff;
+        .badge-devops {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(56, 189, 248, 0.1);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--primary);
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.88rem;
+            font-weight: 600;
             margin-bottom: 20px;
-            transition: transform 0.3s ease;
         }
 
-        header img:hover {
-            transform: scale(1.1);
+        .badge-devops i {
+            font-size: 0.75rem;
+            color: var(--accent);
         }
 
-        header h1 {
-            font-size: 50px;
-            letter-spacing: 2px;
-            color: #000000; /* Light text color */
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #FFFFFF 30%, #94A3B8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        header p {
-            font-size: 20px;
-            color: #000000; /* Light text color */
-            margin: 20px 0;
+        .hero h2 {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 20px;
         }
 
-        header .btn {
-            background-color: #95fbfb;
-            color: #333;
-            font-size: 18px;
-            padding: 15px 30px;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: background-color 0.3s ease;
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            max-width: 600px;
         }
 
-        header .btn:hover {
-            background-color: #e67e22;
-        }
-
-        /* Image Gallery Section */
-        .image-gallery {
+        .hero-meta {
             display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 40px;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+
+        .meta-pill {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            background: var(--bg-card);
+            padding: 8px 14px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .meta-pill i {
+            color: var(--primary);
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 16px;
             flex-wrap: wrap;
         }
 
-        .image-gallery img {
-            width: 300px;
-            height: 200px;
-            object-fit: cover;
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: #fff;
+            padding: 12px 28px;
             border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 20px var(--primary-glow);
+            transition: all 0.3s ease;
         }
 
-        .image-gallery img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(56, 189, 248, 0.4);
         }
 
-        /* Quote Section */
-        .quotes {
-            margin-top: 40px;
-            padding: 20px;
-            background-color: #ececec;
-            color: #2c3e50;
+        .btn-secondary {
+            background: var(--bg-card);
+            color: var(--text-main);
+            padding: 12px 28px;
             border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            font-style: italic;
-            font-size: 1.2em;
-            animation: slideIn 1s ease-out;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
         }
 
-        .quote-text {
-            font-size: 1.5em;
-            font-weight: bold;
+        .btn-secondary:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--primary);
+            transform: translateY(-2px);
         }
 
-        .author {
-            margin-top: 10px;
-            font-size: 1.2em;
-            color: #34495e;
-            font-weight: normal;
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Blank Space */
-        .blank-space {
-            height: 500px; /* Adjust this value for more or less blank space */
-            background-color: #f9f9f9; /* You can also make it the same color as the page background */
-        }
-
-        /* Section Styles */
-        .section {
-            display: none;
-            margin: 40px auto;
-            max-width: 1200px;
-            padding: 40px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .section.active {
-            display: block;
-        }
-
-        .resume-section h2 {
-            font-size: 35px;
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-
-        .resume-section h3 {
-            font-size: 28px;
-            color: #3498db;
-            margin-top: 25px;
-        }
-
-        .resume-section p,
-        .resume-section ul {
-            font-size: 18px;
-            margin: 10px 0;
-            color: #555;
-        }
-
-        .resume-section ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .resume-section ul li {
+        .hero-avatar {
             position: relative;
-            padding-left: 30px;
-            margin-bottom: 10px;
-            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .resume-section ul li::before {
-            content: '✔';
+        .avatar-glow {
             position: absolute;
-            left: 0;
-            top: 0;
-            color: #3498db;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            filter: blur(40px);
+            opacity: 0.35;
+            z-index: 1;
+            animation: pulseGlow 4s ease-in-out infinite alternate;
         }
 
-        .contact-section {
-            background-color: #ecf0f1;
-            padding: 30px;
-            margin-top: 40px;
-            border-radius: 10px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+        @keyframes pulseGlow {
+            0% { transform: scale(0.95); opacity: 0.25; }
+            100% { transform: scale(1.05); opacity: 0.45; }
+        }
+
+        .hero-avatar img {
+            position: relative;
+            z-index: 2;
+            width: 260px;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 4px solid rgba(255, 255, 255, 0.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .hero-avatar img:hover {
+            transform: scale(1.03);
+        }
+
+        /* Section Global Styles */
+        section {
+            padding: 80px 0;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            margin-bottom: 50px;
             text-align: center;
         }
 
-        .contact-section h2 {
-            font-size: 30px;
-            margin-bottom: 20px;
-            color: #3498db;
+        .section-subtitle {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 8px;
         }
 
-        .contact-section p {
-            font-size: 18px;
-            color: #333;
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        /* Glass Card */
+        .glass-card {
+            background: var(--bg-card);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(56, 189, 248, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* About Section */
+        .about-text {
+            font-size: 1.05rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 24px;
+        }
+
+        .highlight-item {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .highlight-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            background: rgba(56, 189, 248, 0.1);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .highlight-info h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .highlight-info p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Experience Section */
+        .experience-card {
+            position: relative;
+            margin-bottom: 30px;
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .exp-title h3 {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .exp-company {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-top: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .exp-badge-promoted {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            font-size: 0.78rem;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        .exp-date {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .exp-list {
+            list-style: none;
+        }
+
+        .exp-list li {
+            position: relative;
+            padding-left: 28px;
+            margin-bottom: 14px;
+            color: var(--text-muted);
+            font-size: 0.98rem;
+        }
+
+        .exp-list li::before {
+            content: "\f00c";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            top: 2px;
+            color: var(--primary);
+            font-size: 0.85rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 28px;
+        }
+
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .project-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.15), rgba(129, 140, 248, 0.15));
+            border: 1px solid rgba(56, 189, 248, 0.3);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            margin-bottom: 20px;
+        }
+
+        .project-title {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--primary);
+            font-size: 0.78rem;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-weight: 500;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px;
+        }
+
+        .skill-category {
+            height: 100%;
+        }
+
+        .skill-cat-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .skill-cat-icon {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        .skill-cat-title {
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #fff;
+        }
+
+        .skill-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-pill {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .skill-pill:hover {
+            background: rgba(56, 189, 248, 0.1);
+            border-color: var(--primary);
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        /* Education & Certifications Grid */
+        .edu-cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 28px;
+        }
+
+        .timeline-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 24px;
+            border-left: 2px solid var(--border-color);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 4px;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px var(--primary);
+        }
+
+        .timeline-item h4 {
+            font-size: 1.05rem;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .timeline-item p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        /* Contact Section */
+        .contact-box {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-methods {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 36px 0;
+        }
+
+        .contact-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 20px 28px;
+            border-radius: 12px;
+            text-decoration: none;
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-card:hover {
+            border-color: var(--primary);
+            background: var(--bg-card-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .contact-card i {
+            font-size: 1.3rem;
+            color: var(--primary);
+        }
+
+        .contact-card span {
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #10B981;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            z-index: 2000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Footer */
         footer {
-            background-color: #2c3e50;
-            color: #fff;
+            padding: 30px 0;
             text-align: center;
-            padding: 20px;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-dim);
+            font-size: 0.9rem;
         }
 
         footer a {
-            color: #f39c12;
+            color: var(--primary);
             text-decoration: none;
-            font-weight: bold;
         }
 
         footer a:hover {
-            color: #ecf0f1;
+            text-decoration: underline;
         }
 
         /* Media Queries */
+        @media (max-width: 992px) {
+            header.hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 60px;
+                min-height: auto;
+            }
+
+            .hero p {
+                margin: 0 auto 30px;
+            }
+
+            .hero-meta {
+                justify-content: center;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+        }
+
         @media (max-width: 768px) {
-            header img {
-                height: 100px;
-            }
-
-            header h1 {
-                font-size: 30px;
-            }
-
-            .resume-section {
-                padding: 20px;
-                margin: 20px;
-            }
-
-            .contact-section {
-                padding: 20px;
-            }
-
-            .image-gallery img {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
                 width: 100%;
-                height: auto;
+                background: rgba(11, 15, 23, 0.95);
+                flex-direction: column;
+                padding: 20px;
+                border-bottom: 1px solid var(--border-color);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero h2 {
+                font-size: 1.35rem;
+            }
+
+            .section-title {
+                font-size: 1.8rem;
+            }
+
+            .projects-grid, .skills-grid, .edu-cert-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav>
-    <a href="javascript:void(0);" onclick="showSection('home')">Home</a>
-    <a href="javascript:void(0);" onclick="showSection('resume')">Resume</a>
-    <a href="javascript:void(0);" onclick="showSection('contact')">Contact</a>
-</nav>
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">Copied to clipboard!</div>
 
-<!-- Home Section -->
-<header id="home" class="section active">
-    <img src="Me.jpg" alt="Barath's Photo">
-    <h1>Barath G</h1>
-    <p>Dev-Ops Engineer | Cloud Enthusiast</p>
-    <a href="javascript:void(0);" class="btn" onclick="showSection('resume')">View Resume</a>
+    <!-- Navigation -->
+    <nav>
+        <div class="container nav-content">
+            <a href="#home" class="logo">
+                <i class="fa-solid fa-server"></i> Barath<span>.dev</span>
+            </a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()" aria-label="Toggle navigation">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#about" onclick="closeMenu()">About</a></li>
+                <li><a href="#experience" onclick="closeMenu()">Experience</a></li>
+                <li><a href="#projects" onclick="closeMenu()">Projects</a></li>
+                <li><a href="#skills" onclick="closeMenu()">Skills</a></li>
+                <li><a href="#education" onclick="closeMenu()">Education</a></li>
+                <li><a href="#contact" class="btn-contact" onclick="closeMenu()">Contact Me</a></li>
+            </ul>
+        </div>
+    </nav>
 
-    <!-- Quote Section -->
-    <div class="quotes">
-        <div class="quote-text">"The only way to do great work is to love what you do."</div>
-        <div class="author">- Steve Jobs</div>
-    </div>
-    <div class="quotes">
-        <div class="quote-text">"Success is not the key to happiness. Happiness is the key to success."</div>
-        <div class="author">- Albert Schweitzer</div>
-    </div>
+    <!-- Main Container -->
+    <main class="container">
 
-    <!-- Image Gallery Section -->
-    <div class="image-gallery">
-        <img src="aws.jpg" alt="Image 1">
-         <img src="Linux.jpg" alt="Image 2">
-        <img src="Dev-Ops.jpg" alt="Image 3">
-        <img src="MrB.jpg" alt="Image 3">
-    </div>
+        <!-- Hero Section -->
+        <header id="home" class="hero">
+            <div class="hero-text">
+                <div class="badge-devops">
+                    <i class="fa-solid fa-circle"></i> Senior DevOps Engineer
+                </div>
+                <h1>Barath G</h1>
+                <h2>Cloud & GitOps Orchestration Specialist</h2>
+                <p>Architecting production Kubernetes clusters, enterprise ArgoCD GitOps pipelines, Groovy Jenkins Shared Libraries, Entra ID (Azure AD) SSO integrations, and resilient multi-cloud infrastructures.</p>
+                
+                <div class="hero-meta">
+                    <div class="meta-pill">
+                        <i class="fa-solid fa-location-dot"></i> Chennai, Tamil Nadu, India
+                    </div>
+                    <div class="meta-pill">
+                        <i class="fa-solid fa-building"></i> Convergent Platforms Ltd
+                    </div>
+                    <div class="meta-pill">
+                        <i class="fa-solid fa-envelope"></i> connectwithbarath@gmail.com
+                    </div>
+                </div>
 
-    <!-- Blank Space Section -->
-    <div class="blank-space"></div>
-</header>
+                <div class="hero-btns">
+                    <a href="#experience" class="btn-primary">
+                        <i class="fa-solid fa-briefcase"></i> View Experience
+                    </a>
+                    <a href="#projects" class="btn-secondary">
+                        <i class="fa-solid fa-code-branch"></i> View Projects
+                    </a>
+                    <a href="https://linkedin.com/in/barathg25" target="_blank" rel="noopener" class="btn-secondary">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    </a>
+                </div>
+            </div>
 
-<!-- Resume Section -->
-<div id="resume" class="resume-section section">
+            <div class="hero-avatar">
+                <div class="avatar-glow"></div>
+                <img src="Me.jpg" alt="Barath G - Senior DevOps Engineer">
+            </div>
+        </header>
 
-    <h2>Resume</h2>
+        <!-- About / Summary Section -->
+        <section id="about">
+            <div class="section-header">
+                <div class="section-subtitle">Professional Profile</div>
+                <h2 class="section-title">About Me</h2>
+            </div>
+            
+            <div class="glass-card">
+                <p class="about-text">
+                    Results-driven <strong>Senior DevOps Engineer</strong> with core expertise in container orchestration, GitOps deployment pipelines, enterprise access management, and multi-cloud infrastructure administration. Fast-tracked from Junior to Senior DevOps Engineer at <strong>Convergent Platforms Ltd</strong>, specializing in production Kubernetes management, ArgoCD GitOps workflows, and enterprise Jenkins Pipelines powered by reusable Groovy Shared Libraries.
+                </p>
+                <p class="about-text">
+                    Proven track record of administering self-hosted GitLab instances, configuring Microsoft Entra ID (Azure AD) SSO authentication for developer platforms (Jenkins, ArgoCD), managing high-availability object storage across AWS S3, Cloudflare R2, and Azure Blob, and automating SSL/TLS certificate lifecycles across Cloudflare and GoDaddy domains.
+                </p>
 
-    <h3>Objective</h3>
-    <ul>
-    <li>Motivated and eager to begin a career as a DevOps Engineer. Familiar with automating software delivery and working with AWS cloud services.</li>
-    <li> Experienced in setting up and managing CI/CD pipelines using tools like Git, GitLab, Maven, Docker, Jenkins, and Kubernetes. Knowledgeable in managing AWS infrastructure such as EC2, S3, RDS, and CloudWatch. Strong understanding of Linux for server administration and automation.</li>
-    </ul>
-    <h3>Education</h3>
-    <ul>
-        <li><strong>MCA</strong> - 2024, Muthayammal Engineering College, Rasipuram, 75.55%</li>
-        <li><strong>BCA</strong> - 2021, Muthayammal College of Art's and Science, 67.48%</li>
-        <li><strong>HSC</strong> - 2018, Sri SRV Matric Hr Sec School, Narasingapuram, 59.33%</li>
-        <li><strong>SSLC</strong> - 2016, Government Boys Hr Sec School, Attur, 73.33%</li>
-    </ul>
+                <div class="highlights-grid">
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fa-solid fa-cubes"></i>
+                        </div>
+                        <div class="highlight-info">
+                            <h4>20+ Microservices</h4>
+                            <p>Standardized CI/CD via Jenkins Groovy Libraries</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fa-solid fa-cloud"></i>
+                        </div>
+                        <div class="highlight-info">
+                            <h4>Multi-Cloud</h4>
+                            <p>AWS S3, Cloudflare R2, & Azure Blob Architectures</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <div class="highlight-info">
+                            <h4>Enterprise SSO</h4>
+                            <p>Microsoft Entra ID (Azure AD) SAML/OIDC Integration</p>
+                        </div>
+                    </div>
+                    <div class="highlight-item">
+                        <div class="highlight-icon">
+                            <i class="fa-solid fa-arrows-rotate"></i>
+                        </div>
+                        <div class="highlight-info">
+                            <h4>Zero-Downtime</h4>
+                            <p>Declarative GitOps Releases with ArgoCD & K8s</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <h3>Skills</h3>
-    <ul>
-        <li><strong>Version Control &nbsp; &nbsp;&nbsp;:</strong>&nbsp; Git, GitLab</li>
-        <li><strong>Build Tools       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;:</strong> &nbsp;Maven, NPM</li>
-        <li><strong>Containerization &nbsp;&nbsp;&nbsp;: </strong>&nbsp;Docker</li>
-        <li><strong>CI/CD Pipelines&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;:</strong> &nbsp;Jenkins</li>
-        <li><strong>Cloud Services &nbsp;&nbsp;  &nbsp;&nbsp;: </strong>&nbsp;AWS, EC2, S3</li>
-        <li><strong>Orchestration &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: </strong>&nbsp;Kubernetes</li>
-        <li><strong>Monitoring	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</strong> &nbsp;Prometheus, Grafana</li>
-        <li><strong>Linux Administration</li>
-    </ul>
-    <h3>Projects</h3>
-    <ul>
-      <p><strong>Project_1</strong></p>
-      <p><strong>Title : </strong>Deployment  of  a  Java  Spring  Boot Application with MySQL Database, CDN, and DNS on AWS</p>
-      <p><strong>Description :  </strong>Deployed   a   scalable  Java  Spring  Boot application on EC2 with an Application Load Balancer and a secure VPC for MySQL. Integrated AWS CloudWatch and SNS for monitoring, and used CloudFront CDN and Route 53 for efficient content delivery.
-</p>
-       </ul>
-    <h3>Certifications</h3>
-    <ul>
-    <p><strong>AWS Cloud Computing Course, Besant Technologies T.Nagar, Chennai .</strong></p>
-       
-    </ul>
+        <!-- Work Experience Section -->
+        <section id="experience">
+            <div class="section-header">
+                <div class="section-subtitle">Career Path</div>
+                <h2 class="section-title">Work Experience</h2>
+            </div>
 
-    <h3><a href="javascript:void(0);" onclick="showSection('contact')">Contact</a></h3>
-</div>
+            <div class="glass-card experience-card">
+                <div class="exp-header">
+                    <div class="exp-title">
+                        <h3>Senior DevOps Engineer</h3>
+                        <div class="exp-company">
+                            <i class="fa-solid fa-building"></i> Convergent Platforms Ltd
+                            <span class="exp-badge-promoted"><i class="fa-solid fa-arrow-up"></i> Promoted from Junior DevOps Engineer</span>
+                        </div>
+                    </div>
+                    <div class="exp-date">
+                        <i class="fa-regular fa-calendar"></i> May 2025 – Present
+                    </div>
+                </div>
 
-<!-- Contact Section -->
-<div id="contact" class="contact-section section">
-    <h2>Contact Information</h2>
-    <p>Email: <a href="mailto:connectwithbarath@gmail.com">connectwithbarath@gmail.com</a></p>
-    <p>Phone: +91 9025516858</p>
-</div>
+                <ul class="exp-list">
+                    <li>Architected modular Jenkins Shared Libraries written in Groovy, standardizing CI/CD build, security scanning, and container publishing steps across 20+ microservices.</li>
+                    <li>Implemented declarative GitOps application workflows utilizing ArgoCD and Kubernetes for automated continuous deployment and zero-downtime rolling releases.</li>
+                    <li>Administered an enterprise Self-Hosted GitLab server, configuring RBAC, user provisioning, backup routines, and runner auto-scaling.</li>
+                    <li>Configured centralized Identity & Access Management integrating Microsoft Entra ID (Azure AD) SSO for developer applications, including Jenkins and ArgoCD user authentication.</li>
+                    <li>Managed multi-cloud object storage architectures leveraging AWS S3, Cloudflare R2, and Azure Blob Storage for data backup, artifact storage, and static content distribution.</li>
+                    <li>Automated domain management, DNS routing, and SSL/TLS certificate renewals across Cloudflare and GoDaddy platforms to ensure continuous site security and uptime.</li>
+                    <li>Engineered observability dashboards and alerting mechanisms using Prometheus, Grafana, and AWS CloudWatch for proactive cluster health tracking.</li>
+                </ul>
+            </div>
+        </section>
 
-<!-- Footer -->
-<footer>
-    <p>&copy; 2024 Barath G | <a href="https://github.com/barathg25" target="_blank">GitHub</a></p>
-</footer>
+        <!-- Key Projects Section -->
+        <section id="projects">
+            <div class="section-header">
+                <div class="section-subtitle">Featured Work</div>
+                <h2 class="section-title">Key Enterprise Projects</h2>
+            </div>
 
-<script>
-  function showSection(id) {
-        const sections = document.querySelectorAll('.section');
-        sections.forEach(section => section.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-    }
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="glass-card project-card">
+                    <div>
+                        <div class="project-icon">
+                            <i class="fa-solid fa-key"></i>
+                        </div>
+                        <h3 class="project-title">Enterprise Identity Access Management & SSO Integration</h3>
+                        <p class="project-desc">
+                            Integrated Microsoft Entra ID (Azure AD) OAuth2/OIDC authentication across internal DevOps platforms (Jenkins, ArgoCD, Self-Hosted GitLab), establishing centralized role-based access control (RBAC) and streamlined user provisioning.
+                        </p>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Microsoft Entra ID</span>
+                        <span class="tech-tag">OAuth2 / OIDC</span>
+                        <span class="tech-tag">Jenkins</span>
+                        <span class="tech-tag">ArgoCD</span>
+                        <span class="tech-tag">GitLab</span>
+                        <span class="tech-tag">RBAC</span>
+                    </div>
+                </div>
 
- 
-</script>
-</body>
-</html>
+                <!-- Project 2 -->
+                <div class="glass-card project-card">
+                    <div>
+                        <div class="project-icon">
+                            <i class="fa-solid fa-network-wired"></i>
+                        </div>
+                        <h3 class="project-title">Multi-Cloud Object Storage & Automated SSL Management Pipeline</h3>
+                        <p class="project-desc">
+                            Architected low-cost storage tiering using Cloudflare R2 alongside AWS S3 and Azure Blob, while automating SSL/TLS certificate auto-renewals for Cloudflare and GoDaddy managed domains via Cert-Manager.
+                        </p>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">AWS S3</span>
+                        <span class="tech-tag">Cloudflare R2</span>
+                        <span class="tech-tag">Azure Blob</span>
+                        <span class="tech-tag">Cert-Manager</span>
+                        <span class="tech-tag">Wildcard SSL</span>
+                        <span class="tech-tag">DNS Routing</span>
+                    </div>
+                </div>
 
+                <!-- Project 3 -->
+                <div class="glass-card project-card">
+                    <div>
+                        <div class="project-icon">
+                            <i class="fa-solid fa-code-merge"></i>
+                        </div>
+                        <h3 class="project-title">Jenkins Groovy Shared Libraries & GitOps Continuous Delivery</h3>
+                        <p class="project-desc">
+                            Designed a centralized Groovy shared library repository for Jenkins coupled with ArgoCD GitOps deployment synchronization on Kubernetes clusters to enable continuous zero-downtime application delivery.
+                        </p>
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Jenkins</span>
+                        <span class="tech-tag">Groovy</span>
+                        <span class="tech-tag">ArgoCD</span>
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">Helm Charts</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Technical Competencies Section -->
+        <section id="skills">
+            <div class="section-header">
+                <div class="section-subtitle">Technical Expertise</div>
+                <h2 class="section-title">Skills & Competencies</h2>
+            </div>
+
+            <div class="skills-grid">
+                <!-- Skill 1 -->
+                <div class="glass-card skill-category">
+                    <div class="skill-cat-header">
+                        <i class="fa-solid fa-cloud skill-cat-icon"></i>
+                        <h3 class="skill-cat-title">Cloud & Object Storage</h3>
+                    </div>
+                    <div class="skill-pills">
+                        <span class="skill-pill"><i class="fa-brands fa-aws"></i> AWS (EC2, S3, VPC)</span>
+                        <span class="skill-pill">IAM & RDS</span>
+                        <span class="skill-pill">CloudFront & Route 53</span>
+                        <span class="skill-pill">ALB / NLB</span>
+                        <span class="skill-pill">Azure Blob Storage</span>
+                        <span class="skill-pill">Microsoft Entra ID</span>
+                        <span class="skill-pill">Cloudflare R2</span>
+                        <span class="skill-pill">E2E Networks</span>
+                        <span class="skill-pill">HostZone & Happi Host</span>
+                    </div>
+                </div>
+
+                <!-- Skill 2 -->
+                <div class="glass-card skill-category">
+                    <div class="skill-cat-header">
+                        <i class="fa-solid fa-shield-virus skill-cat-icon"></i>
+                        <h3 class="skill-cat-title">Domain, DNS & SSL</h3>
+                    </div>
+                    <div class="skill-pills">
+                        <span class="skill-pill">Cloudflare DNS</span>
+                        <span class="skill-pill">GoDaddy Domain</span>
+                        <span class="skill-pill">Cert-Manager</span>
+                        <span class="skill-pill">Let's Encrypt</span>
+                        <span class="skill-pill">Wildcard Certificates</span>
+                        <span class="skill-pill">SSL/TLS Lifecycle</span>
+                    </div>
+                </div>
+
+                <!-- Skill 3 -->
+                <div class="glass-card skill-category">
+                    <div class="skill-cat-header">
+                        <i class="fa-solid fa-diagram-project skill-cat-icon"></i>
+                        <h3 class="skill-cat-title">CI/CD & GitOps</h3>
+                    </div>
+                    <div class="skill-pills">
+                        <span class="skill-pill"><i class="fa-brands fa-jenkins"></i> Jenkins</span>
+                        <span class="skill-pill">Groovy Shared Libraries</span>
+                        <span class="skill-pill">ArgoCD</span>
+                        <span class="skill-pill"><i class="fa-brands fa-gitlab"></i> Self-Hosted GitLab Admin</span>
+                        <span class="skill-pill"><i class="fa-brands fa-git-alt"></i> Git</span>
+                        <span class="skill-pill">Maven</span>
+                        <span class="skill-pill"><i class="fa-brands fa-npm"></i> NPM</span>
+                    </div>
+                </div>
+
+                <!-- Skill 4 -->
+                <div class="glass-card skill-category">
+                    <div class="skill-cat-header">
+                        <i class="fa-solid fa-docker skill-cat-icon"></i>
+                        <h3 class="skill-cat-title">Containers & Orchestration</h3>
+                    </div>
+                    <div class="skill-pills">
+                        <span class="skill-pill"><i class="fa-solid fa-dharmachakra"></i> Kubernetes</span>
+                        <span class="skill-pill"><i class="fa-brands fa-docker"></i> Docker</span>
+                        <span class="skill-pill">DockerHub</span>
+                        <span class="skill-pill">Helm Charts</span>
+                        <span class="skill-pill">Microservice Containerization</span>
+                    </div>
+                </div>
+
+                <!-- Skill 5 -->
+                <div class="glass-card skill-category">
+                    <div class="skill-cat-header">
+                        <i class="fa-solid fa-user-shield skill-cat-icon"></i>
+                        <h3 class="skill-cat-title">Identity & Observability</h3>
+                    </div>
+                    <div class="skill-pills">
+                        <span class="skill-pill">Microsoft Entra ID (Azure AD)</span>
+                        <span class="skill-pill">SAML / OIDC</span>
+                        <span class="skill-pill">Prometheus</span>
+                        <span class="skill-pill">Grafana</span>
+                        <span class="skill-pill">AWS CloudWatch</span>
+                        <span class="skill-pill">SonarQube</span>
+                    </div>
+                </div>
+
+                <!-- Skill 6 -->
+                <div class="glass-card skill-category">
+                    <div class="skill-cat-header">
+                        <i class="fa-solid fa-terminal skill-cat-icon"></i>
+                        <h3 class="skill-cat-title">Systems & Scripting</h3>
+                    </div>
+                    <div class="skill-pills">
+                        <span class="skill-pill"><i class="fa-brands fa-linux"></i> Linux (Ubuntu / RHEL)</span>
+                        <span class="skill-pill">Groovy Scripting</span>
+                        <span class="skill-pill">Bash / Shell Scripting</span>
+                        <span class="skill-pill"><i class="fa-brands fa-python"></i> Python</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education & Certifications Section -->
+        <section id="education">
+            <div class="section-header">
+                <div class="section-subtitle">Qualifications</div>
+                <h2 class="section-title">Education & Certifications</h2>
+            </div>
+
+            <div class="edu-cert-grid">
+                <!-- Education -->
+                <div class="glass-card">
+                    <h3 style="font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 20px; color: #fff; display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-graduation-cap" style="color: var(--primary);"></i> Academic Background
+                    </h3>
+
+                    <div class="timeline-list">
+                        <div class="timeline-item">
+                            <h4>Master of Computer Applications (MCA)</h4>
+                            <p>Muthayammal Engineering College | 75.55%</p>
+                            <div class="timeline-date">2022 – 2024</div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h4>Bachelor of Computer Applications (BCA)</h4>
+                            <p>Muthayammal College of Arts and Science | 67.48%</p>
+                            <div class="timeline-date">2018 – 2021</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="glass-card">
+                    <h3 style="font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 20px; color: #fff; display: flex; align-items: center; gap: 10px;">
+                        <i class="fa-solid fa-certificate" style="color: var(--primary);"></i> Certifications
+                    </h3>
+
+                    <div class="timeline-list">
+                        <div class="timeline-item">
+                            <h4>Cloud Computing Certification</h4>
+                            <p>Besant Technologies, Chennai</p>
+                            <div class="timeline-date">Certified Specialist</div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <h4>Cloud Computing & System Networking</h4>
+                            <p>Sharadha Skill Academy, Coimbatore</p>
+                            <div class="timeline-date">Professional Training</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="glass-card contact-box">
+                <div class="section-subtitle">Get In Touch</div>
+                <h2 class="section-title">Let's Connect</h2>
+                <p style="color: var(--text-muted); margin-top: 12px; font-size: 1.05rem;">
+                    Interested in collaborating on DevOps pipelines, Cloud infrastructure, or GitOps architecture? Feel free to reach out directly.
+                </p>
+
+                <div class="contact-methods">
+                    <a href="mailto:connectwithbarath@gmail.com" class="contact-card">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span>connectwithbarath@gmail.com</span>
+                    </a>
+
+                    <a href="tel:+919025516858" class="contact-card">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>+91 9025516858</span>
+                    </a>
+
+                    <a href="https://linkedin.com/in/barathg25" target="_blank" rel="noopener" class="contact-card">
+                        <i class="fa-brands fa-linkedin"></i>
+                        <span>barathg25</span>
+                    </a>
+
+                    <a href="https://github.com/barathg25" target="_blank" rel="noopener" class="contact-card">
+                        <i class="fa-brands fa-github"></i>
+                        <span>barathg25</span>
+                    </a>
+                </div>
+
+                <div>
+                    <button class="btn-primary" onclick="copyEmail()">
+                        <i class="fa-regular fa-copy"></i> Copy Email Address
+                    </button>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Barath G. Senior DevOps Engineer | Built with Passion &amp; Clean Code.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            navLinks.classList.remove('active');
+        }
+
+        // Copy Email function
+        function copyEmail() {
+            const email = "connectwithbarath@gmail.com";
+            navigator.clipboard.writeText(email).then(() => {
+                showToast("Email address copied to clipboard!");
+            }).catch(err => {
+                console.error("Could not copy email: ", err);
+            });
+        }
+
+        // Toast notification
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            toast.textContent = message;
+            toast.classList.add("show");
+            setTimeout(() => {
+                toast.classList.remove("show");
+            }, 3000);
+        }
+
+        // Active link highlighting on scroll
+        const sections = document.querySelectorAll("section, header");
+        const navLi = document.querySelectorAll("nav ul li a");
+
+        window.addEventListener("scroll", () => {
+            let current = "";
+            sections.forEach((section) => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 150) {
+                    current = section.getAttribute("id");
+                }
+            });
+
+            navLi.forEach((a) => {
+                a.classList.remove("active");
+                if (a.getAttribute("href") === `#${current}`) {
+                    a.classList.add("active");
+                }
+            });
+        });
+    </script>
 </body>
 </html>
