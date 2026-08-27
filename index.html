@@ -159,7 +159,6 @@
             display: flex;
             align-items: center;
             gap: 14px;
-            group: logo;
             cursor: pointer;
         }
 
@@ -180,18 +179,14 @@
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .logo-badge i {
-            transition: transform 0.5s ease;
-        }
+        .logo-badge i { transition: transform 0.5s ease; }
 
         .logo-special:hover .logo-badge {
             transform: scale(1.1) rotate(10deg);
             box-shadow: 0 0 30px rgba(0, 242, 254, 0.8);
         }
 
-        .logo-special:hover .logo-badge i {
-            transform: rotate(360deg);
-        }
+        .logo-special:hover .logo-badge i { transform: rotate(360deg); }
 
         .logo-text-group {
             display: flex;
@@ -264,9 +259,7 @@
         }
 
         .nav-links a:hover,
-        .nav-links a.active {
-            color: #fff;
-        }
+        .nav-links a.active { color: #fff; }
 
         .nav-links a.active::after {
             content: '';
@@ -422,10 +415,13 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
+            border: none;
+            cursor: pointer;
             box-shadow: 0 0 25px rgba(0, 242, 254, 0.4);
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            font-size: 1rem;
         }
 
         .btn-gradient::after {
@@ -601,9 +597,7 @@
             transition: left 0.7s ease;
         }
 
-        .glass-card:hover::before {
-            left: 100%;
-        }
+        .glass-card:hover::before { left: 100%; }
 
         .glass-card:hover {
             transform: translateY(-8px) scale(1.01);
@@ -865,9 +859,7 @@
             box-shadow: 0 20px 40px rgba(0, 242, 254, 0.3);
         }
 
-        .gallery-item:hover img {
-            transform: scale(1.12);
-        }
+        .gallery-item:hover img { transform: scale(1.12); }
 
         /* Skills Section */
         .skills-grid {
@@ -896,9 +888,7 @@
             transition: transform 0.3s ease;
         }
 
-        .glass-card:hover .skill-cat-badge {
-            transform: rotate(360deg);
-        }
+        .glass-card:hover .skill-cat-badge { transform: rotate(360deg); }
 
         .skill-cat-title {
             font-family: var(--font-heading);
@@ -980,21 +970,39 @@
         .timeline-item p { font-size: 0.95rem; color: var(--text-muted); margin-top: 4px; }
         .timeline-date { font-size: 0.85rem; color: #00FF87; font-weight: 700; margin-top: 6px; }
 
-        /* Contact Section */
-        .contact-box { text-align: center; max-width: 860px; margin: 0 auto; }
+        /* Contact Section & Form Styling */
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 36px;
+            align-items: start;
+        }
 
-        .contact-methods {
+        .contact-info-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 12px;
+        }
+
+        .contact-info-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .contact-methods-stack {
             display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-            margin: 40px 0;
+            flex-direction: column;
+            gap: 16px;
         }
 
         .contact-card {
             background: rgba(255, 255, 255, 0.04);
             border: 1px solid var(--border-color);
-            padding: 22px 30px;
+            padding: 18px 24px;
             border-radius: 16px;
             text-decoration: none;
             color: #fff;
@@ -1007,13 +1015,88 @@
         .contact-card:hover {
             border-color: #00F2FE;
             background: rgba(0, 242, 254, 0.12);
-            transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 12px 30px rgba(0, 242, 254, 0.3);
+            transform: translateX(6px);
+            box-shadow: 0 8px 25px rgba(0, 242, 254, 0.25);
         }
 
-        .contact-card i { font-size: 1.5rem; color: #00F2FE; transition: transform 0.3s ease; }
-        .contact-card:hover i { transform: scale(1.2) rotate(10deg); }
-        .contact-card span { font-weight: 700; font-size: 1rem; }
+        .contact-card i { font-size: 1.4rem; color: #00F2FE; }
+        .contact-card span { font-weight: 700; font-size: 0.98rem; }
+
+        /* Contact Form Styles */
+        .contact-form-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            width: 100%;
+            background: rgba(7, 9, 19, 0.6);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: #fff;
+            font-family: var(--font-body);
+            font-size: 0.98rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: #00F2FE;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.3);
+            background: rgba(15, 23, 42, 0.9);
+        }
+
+        .form-control::placeholder { color: var(--text-dim); }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-alert {
+            display: none;
+            padding: 14px 20px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .form-alert.success {
+            display: block;
+            background: rgba(0, 255, 135, 0.15);
+            border: 1px solid rgba(0, 255, 135, 0.4);
+            color: #00FF87;
+        }
+
+        .form-alert.error {
+            display: block;
+            background: rgba(255, 8, 68, 0.15);
+            border: 1px solid rgba(255, 8, 68, 0.4);
+            color: #FFB199;
+        }
 
         /* Toast */
         .toast {
@@ -1057,6 +1140,8 @@
             .hero h1 { font-size: 3rem; }
             .hero p { margin: 0 auto 30px; }
             .hero-meta, .hero-btns { justify-content: center; }
+
+            .contact-container { grid-template-columns: 1fr; }
         }
 
         @media (max-width: 768px) {
@@ -1078,6 +1163,7 @@
             .hero h2 { font-size: 1.35rem; }
             .section-title { font-size: 2rem; }
             .projects-grid, .skills-grid, .edu-cert-grid { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -1539,41 +1625,86 @@
             </div>
         </section>
 
-        <!-- Contact Section -->
+        <!-- Contact Section with Direct Email Form -->
         <section id="contact">
-            <div class="glass-card contact-box reveal-scale">
+            <div class="section-header reveal">
                 <div class="section-subtitle text-grad-primary">Get In Touch</div>
-                <h2 class="section-title">Let's Build Something <span class="text-grad-primary">Awesome</span></h2>
-                <p style="color: var(--text-muted); margin-top: 14px; font-size: 1.1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
-                    Interested in collaborating on DevOps pipelines, Cloud infrastructure, GitOps, or Enterprise SSO integrations? Feel free to reach out directly.
-                </p>
+                <h2 class="section-title">Send Me a <span class="text-grad-primary">Message</span></h2>
+            </div>
 
-                <div class="contact-methods">
-                    <a href="mailto:connectwithbarath@gmail.com" class="contact-card">
-                        <i class="fa-solid fa-envelope"></i>
-                        <span>connectwithbarath@gmail.com</span>
-                    </a>
+            <div class="contact-container">
+                <!-- Left: Contact Details -->
+                <div class="glass-card contact-info-card reveal-left">
+                    <h3>Let's Connect</h3>
+                    <p>Have a project, job opportunity, or technical inquiry? Fill out the form or reach out directly via email, phone, or LinkedIn.</p>
 
-                    <a href="tel:+919025516858" class="contact-card">
-                        <i class="fa-solid fa-phone text-grad-accent"></i>
-                        <span>+91 9025516858</span>
-                    </a>
+                    <div class="contact-methods-stack">
+                        <a href="mailto:connectwithbarath@gmail.com" class="contact-card">
+                            <i class="fa-solid fa-envelope"></i>
+                            <div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">Direct Email</div>
+                                <span>connectwithbarath@gmail.com</span>
+                            </div>
+                        </a>
 
-                    <a href="https://linkedin.com/in/barathg25" target="_blank" rel="noopener" class="contact-card">
-                        <i class="fa-brands fa-linkedin text-grad-primary"></i>
-                        <span>barathg25</span>
-                    </a>
+                        <a href="tel:+919025516858" class="contact-card">
+                            <i class="fa-solid fa-phone text-grad-accent"></i>
+                            <div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">Phone / WhatsApp</div>
+                                <span>+91 9025516858</span>
+                            </div>
+                        </a>
 
-                    <a href="https://github.com/barathg25" target="_blank" rel="noopener" class="contact-card">
-                        <i class="fa-brands fa-github text-grad-secondary"></i>
-                        <span>barathg25</span>
-                    </a>
+                        <a href="https://linkedin.com/in/barathg25" target="_blank" rel="noopener" class="contact-card">
+                            <i class="fa-brands fa-linkedin text-grad-primary"></i>
+                            <div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">LinkedIn Profile</div>
+                                <span>linkedin.com/in/barathg25</span>
+                            </div>
+                        </a>
+
+                        <a href="https://github.com/barathg25" target="_blank" rel="noopener" class="contact-card">
+                            <i class="fa-brands fa-github text-grad-secondary"></i>
+                            <div>
+                                <div style="font-size: 0.8rem; color: var(--text-muted);">GitHub Repository</div>
+                                <span>github.com/barathg25</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
 
-                <div>
-                    <button class="btn-gradient" onclick="copyEmail()">
-                        <i class="fa-regular fa-copy"></i> Copy Email Address
-                    </button>
+                <!-- Right: Direct Message Email Form -->
+                <div class="glass-card contact-form-card reveal-right">
+                    <h3><i class="fa-solid fa-paper-plane text-grad-primary"></i> Send Direct Message</h3>
+                    
+                    <div id="formAlert" class="form-alert"></div>
+
+                    <form id="contactForm" onsubmit="handleFormSubmit(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="senderName">Your Name *</label>
+                                <input type="text" id="senderName" name="name" class="form-control" placeholder="John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="senderEmail">Your Email *</label>
+                                <input type="email" id="senderEmail" name="email" class="form-control" placeholder="john@example.com" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="msgSubject">Subject</label>
+                            <input type="text" id="msgSubject" name="_subject" class="form-control" placeholder="DevOps Project / Job Opportunity">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="msgContent">Message *</label>
+                            <textarea id="msgContent" name="message" class="form-control" rows="5" placeholder="Hi Barath, I would like to discuss..." required></textarea>
+                        </div>
+
+                        <button type="submit" id="submitBtn" class="btn-gradient" style="width: 100%; justify-content: center;">
+                            <i class="fa-solid fa-paper-plane"></i> Send Message to Barath
+                        </button>
+                    </form>
                 </div>
             </div>
         </section>
@@ -1600,6 +1731,67 @@
             navLinks.classList.remove('active');
         }
 
+        // Handle Contact Form Submission to Email
+        async function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const formAlert = document.getElementById('formAlert');
+            const form = document.getElementById('contactForm');
+            
+            const name = document.getElementById('senderName').value;
+            const email = document.getElementById('senderEmail').value;
+            const subject = document.getElementById('msgSubject').value || 'New Portfolio Message from ' + name;
+            const message = document.getElementById('msgContent').value;
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Sending to connectwithbarath@gmail.com...';
+            formAlert.className = 'form-alert';
+            formAlert.style.display = 'none';
+
+            try {
+                // Send AJAX POST request via FormSubmit endpoint to Barath's email
+                const response = await fetch('https://formsubmit.co/ajax/connectwithbarath@gmail.com', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: name,
+                        email: email,
+                        _subject: subject,
+                        message: message
+                    })
+                });
+
+                const data = await response.json();
+
+                if (response.ok || data.success === "true") {
+                    formAlert.className = 'form-alert success';
+                    formAlert.innerHTML = '<i class="fa-solid fa-circle-check"></i> <strong>Message Delivered!</strong> Thank you ' + name + ', your message has been sent directly to Barath\'s inbox (connectwithbarath@gmail.com).';
+                    form.reset();
+                    showToast("Message sent to connectwithbarath@gmail.com!");
+                } else {
+                    throw new Error('Server returned an error.');
+                }
+            } catch (err) {
+                console.error("Form submit error:", err);
+                formAlert.className = 'form-alert error';
+                formAlert.innerHTML = '<i class="fa-solid fa-circle-exclamation"></i> Could not send via auto-relay. Opening direct mail client...';
+                
+                // Fallback to mailto link if endpoint fails
+                setTimeout(() => {
+                    const mailtoUrl = `mailto:connectwithbarath@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent("From: " + name + " (" + email + ")\n\n" + message)}`;
+                    window.location.href = mailtoUrl;
+                }, 1000);
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Send Message to Barath';
+            }
+        }
+
         // Copy Email function
         function copyEmail() {
             const email = "connectwithbarath@gmail.com";
@@ -1617,7 +1809,7 @@
             toast.classList.add("show");
             setTimeout(() => {
                 toast.classList.remove("show");
-            }, 3000);
+            }, 3500);
         }
 
         // IntersectionObserver Scroll Reveal Animations
